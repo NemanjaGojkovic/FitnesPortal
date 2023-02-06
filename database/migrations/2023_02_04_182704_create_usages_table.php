@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('usages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreignId('services_id');
+            $table->date('date_from');
+            $table->date('date_to');
+            $table->unique(array('user_id', 'services_id'));
             $table->timestamps();
         });
     }
