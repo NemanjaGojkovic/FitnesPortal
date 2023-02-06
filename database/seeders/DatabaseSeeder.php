@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
+use App\Models\Coach;
+use App\Models\Service;
+use App\Models\Type;
+use App\Models\Usage;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +20,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Category::truncate();
+        User::truncate();
+        Usage::truncate();
+        Type::truncate();
+        Coach::truncate();
+        Service::truncate();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(5)->create();
+        Coach::factory(5)->create();
+        Service::factory(5)->create();
+        Usage::factory(5)->create();
+        
     }
 }

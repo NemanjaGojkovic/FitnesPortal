@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Service;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class UsageFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'date_from'=>$this->faker->date(),
+            'date_to'=>$this->faker->date(),
+            'user_id'=>User::factory(),
+            'service_id'=>Service::factory()
         ];
     }
 }

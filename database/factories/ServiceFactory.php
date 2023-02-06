@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Type;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class ServiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->word(),
+            'price'=>$this->faker->randomFloat(4, 0, 7000),
+            'duration'=>$this->faker->time(),
+            'description'=>$this->faker->text(),
+            'type_id'=>Type::factory()
         ];
     }
 }

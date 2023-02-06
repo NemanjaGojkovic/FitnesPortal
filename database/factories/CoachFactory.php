@@ -17,7 +17,10 @@ class CoachFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'firstname'=>$this->faker->firstName(),
+            'lastname'=>$this->faker->lastName(),
+            'experience'=>$this->faker->text(),
+            'started'=>$this->faker->date()
         ];
     }
 }
