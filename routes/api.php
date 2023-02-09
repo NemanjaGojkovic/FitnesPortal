@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceTypeController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UsageController;
+use App\Http\Controllers\UserCategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/users', UserController::class);
-Route::resource('/services', ServiceController::class);
+Route::resource('users', UserController::class);
+Route::resource('services', ServiceController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('types', TypeController::class);
+Route::resource('usages', UsageController::class);
+Route::resource('coaches', CoachController::class);
+Route::resource('categories.users', UserCategoryController::class)->only(['index']);
+Route::resource('types.services', ServiceTypeController::class)->only(['index']);
+

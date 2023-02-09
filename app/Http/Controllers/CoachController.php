@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CoachCollection;
+use App\Http\Resources\CoachResource;
 use App\Models\Coach;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class CoachController extends Controller
      */
     public function index()
     {
-        //
+        $coaches = Coach::all();
+        return new CoachCollection($coaches);
     }
 
     /**
@@ -46,7 +49,7 @@ class CoachController extends Controller
      */
     public function show(Coach $coach)
     {
-        //
+        return new CoachResource($coach);
     }
 
     /**

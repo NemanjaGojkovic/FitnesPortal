@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UsageCollection;
+use App\Http\Resources\UsageResource;
 use App\Models\Usage;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class UsageController extends Controller
      */
     public function index()
     {
-        //
+        $usages = Usage::all();
+        return new UsageCollection($usages);
     }
 
     /**
@@ -46,7 +49,7 @@ class UsageController extends Controller
      */
     public function show(Usage $usage)
     {
-        //
+        return new UsageResource($usage);
     }
 
     /**

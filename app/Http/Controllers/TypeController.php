@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TypeCollection;
+use App\Http\Resources\TypeResource;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        return new TypeCollection($types);
     }
 
     /**
@@ -46,7 +49,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return new TypeResource($type);
     }
 
     /**

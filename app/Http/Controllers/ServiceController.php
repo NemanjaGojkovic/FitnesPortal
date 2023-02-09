@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ServiceCollection;
+use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+        return new ServiceCollection($services);
     }
 
     /**
@@ -46,7 +49,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return new ServiceResource($service);
     }
 
     /**
