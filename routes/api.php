@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\ServiceController;
@@ -34,4 +35,14 @@ Route::resource('usages', UsageController::class);
 Route::resource('coaches', CoachController::class);
 Route::resource('categories.users', UserCategoryController::class)->only(['index']);
 Route::resource('types.services', ServiceTypeController::class)->only(['index']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+    // Route::resource('', PostController::class)->only(['update','store','destroy']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 
