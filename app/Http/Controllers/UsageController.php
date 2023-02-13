@@ -6,6 +6,7 @@ use App\Http\Resources\UsageCollection;
 use App\Http\Resources\UsageResource;
 use App\Models\Usage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UsageController extends Controller
 {
@@ -16,7 +17,11 @@ class UsageController extends Controller
      */
     public function index()
     {
-        $usages = Usage::all();
+        $user_id = auth()->user()->id;
+        $usages = Usage::get()->where('user_id', $user_id);
+        if (is_null($usages)) {
+            return response()->json('Nemate nijednu uslugu', 404);
+        }
         return new UsageCollection($usages);
     }
 
@@ -38,7 +43,24 @@ class UsageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'service_id' => 'required',
+            'date_from' => 'required|date',
+            'date_to' => 'required|after:date_from'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $usage = Usage::create([
+            'service_id' => $request->service_id,
+            'user_id' => auth()->user()->id,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to
+        ]);
+
+        return response()->json(['Koriscenje usluge je uspesno kreirano.', new UsageResource($usage), 'success' => true]);
     }
 
     /**
@@ -81,8 +103,15 @@ class UsageController extends Controller
      * @param  \App\Models\Usage  $usage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usage $usage)
+    public function destroy($usage_id)
     {
-        //
+        $usage = Usage::get()->where('id', $usage_id)->first();
+        if (!$usage) {
+            return response()->json('Ne postoji izabrano koriscenje usluge', 404);
+        }
+
+        $usage->delete();
+
+        return response()->json('Koriscenje usluge je obrisano.');
     }
 }

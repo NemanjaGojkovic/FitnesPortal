@@ -6,6 +6,7 @@ use App\Http\Resources\CategoryCollection;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -38,7 +39,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $category = Category::create([
+            'name' => $request->name,
+        ]);
+
+        return response()->json(['Kategorija je uspesno kreirana.', new CategoryResource($category), 'success' => true]);
     }
 
     /**
@@ -70,9 +83,23 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        return response()->json(['Kategorija je uspesno azurirana.', new CategoryResource($category), 'success' => true]);
     }
 
     /**
@@ -83,6 +110,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json('Kategorija je uspesno izbrisana.');
     }
 }

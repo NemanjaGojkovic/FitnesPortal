@@ -6,6 +6,7 @@ use App\Http\Resources\ServiceCollection;
 use App\Http\Resources\ServiceResource;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
@@ -27,7 +28,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -38,7 +39,26 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'required|date_format:H:i',
+            'description' => 'required|string|max:255'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $service = Service::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'duration' => $request->duration,
+            'description' => $request->description,
+            'type_id' => $request->type_id
+        ]);
+
+        return response()->json(['Usluga je uspesno kreirana.', new ServiceResource($service), 'success' => true]);
     }
 
     /**
@@ -70,9 +90,30 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $service = Service::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'duration' => 'required|date_format:H:i',
+            'description' => 'required|string|max:255'
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $service->name = $request->name;
+        $service->price = $request->price;
+        $service->duration = $request->duration;
+        $service->description = $request->description;
+        $service->type_id = $request->type_id;
+
+        $service->save();
+
+        return response()->json(['Usluga je uspesno azurirana.', new ServiceResource($service), 'success' => true]);
     }
 
     /**
@@ -83,6 +124,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return response()->json('Usluga je uspesno izbrisana.');
     }
 }

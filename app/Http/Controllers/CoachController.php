@@ -6,6 +6,7 @@ use App\Http\Resources\CoachCollection;
 use App\Http\Resources\CoachResource;
 use App\Models\Coach;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CoachController extends Controller
 {
@@ -38,7 +39,25 @@ class CoachController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'experience' => 'required|string|max:255',
+            'started' => 'required|date|before:tomorrow'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $coach = Coach::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'experience' => $request->experience,
+            'started' => $request->started,
+        ]);
+
+        return response()->json(['Trener je uspesno kreiran.', new CoachResource($coach), 'success' => true]);
     }
 
     /**
@@ -70,9 +89,29 @@ class CoachController extends Controller
      * @param  \App\Models\Coach  $coach
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Coach $coach)
+    public function update(Request $request, $id)
     {
-        //
+        $coach = Coach::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'experience' => 'required|string|max:255',
+            'started' => 'required|date|before:tomorrow'
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $coach->firstname = $request->firstname;
+        $coach->lastname = $request->lastname;
+        $coach->experience = $request->experience;
+        $coach->started = $request->started;
+
+        $coach->save();
+
+        return response()->json(['Trener je uspesno azuriran.', new CoachResource($coach), 'success' => true]);
     }
 
     /**
@@ -83,6 +122,7 @@ class CoachController extends Controller
      */
     public function destroy(Coach $coach)
     {
-        //
+        $coach->delete();
+        return response()->json('Trener je uspesno izbrisan.');
     }
 }

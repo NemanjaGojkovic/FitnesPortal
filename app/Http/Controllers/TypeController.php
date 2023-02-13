@@ -6,6 +6,7 @@ use App\Http\Resources\TypeCollection;
 use App\Http\Resources\TypeResource;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TypeController extends Controller
 {
@@ -38,7 +39,19 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $type = Type::create([
+            'name' => $request->name,
+        ]);
+
+        return response()->json(['Tip usluge je uspesno kreiran.', new TypeResource($type), 'success' => true]);
     }
 
     /**
@@ -70,9 +83,23 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, $id)
     {
-        //
+        $type = Type::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $type->name = $request->name;
+
+        $type->save();
+
+        return response()->json(['Tip usluge je uspesno azuriran.', new TypeResource($type), 'success' => true]);
     }
 
     /**
@@ -83,6 +110,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return response()->json('Tip usluge je uspesno izbrisan.');
     }
 }

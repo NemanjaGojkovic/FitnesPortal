@@ -31,7 +31,6 @@ Route::resource('users', UserController::class);
 Route::resource('services', ServiceController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('types', TypeController::class);
-Route::resource('usages', UsageController::class);
 Route::resource('coaches', CoachController::class);
 Route::resource('categories.users', UserCategoryController::class)->only(['index']);
 Route::resource('types.services', ServiceTypeController::class)->only(['index']);
@@ -41,7 +40,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function(Request $request) {
         return auth()->user();
     });
-    // Route::resource('', PostController::class)->only(['update','store','destroy']);
+
+    Route::group(['middleware' => ['admin']], function () {
+    });
+    
+    Route::resource('services', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('categories', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('types', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('coaches', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('usages', ServiceController::class)->only(['index','update', 'store', 'delete']);
+    Route::put('/update-user', [AuthController::class, 'update']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

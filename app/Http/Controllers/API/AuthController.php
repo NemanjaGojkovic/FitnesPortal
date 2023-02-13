@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -58,5 +59,34 @@ class AuthController extends Controller
     {
         auth()->user()->tokens()->delete();
         return ['message'=>"Uspesno ste se odjavili, dovidjenja"];
+    }
+
+    public function update(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+        $validator = Validator::make($request->all(), [
+            'firstname'=> 'required|string|max:255', 
+            'lastname'=> 'required|string|max:255', 
+            'birthday'=> 'required|date|before:tomorrow', 
+            'email'=>'required|string|email|max:255|unique:users',
+            'password'=>'required|string|min:5'
+        ]);
+
+        if ($validator->fails())
+            return response()->json($validator->errors());
+
+
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->birthday = $request->birthday;
+        $user->categoy_id = $request->category_id;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return response()->json(['Korisniku su uspesno izmenjeni podaci', new UserResource($user), 'success' => true]);
     }
 }
