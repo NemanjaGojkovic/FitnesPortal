@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.inner-width{
+
+  padding: 0 10px;
+  display: flex; 
+  background-color: rgb(54, 0, 0); 
+  justify-content: space-around;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title{
+  color: rgb(181, 63, 30);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navigation-menu{
+  float: left;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  min-height: 90px;
+}
+
+.nav2{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  float: right;
+}
+
+.nav2 a{
+  margin-left: 7px;
+  margin-right: 7px;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .3s linear;
+  border: 1px solid white;
+}
+
+.nav2 a:hover{
+  background: #953201;
+  color: #fff;
+  border-width: 2px;
+  border-color: black;
+  transform: scale(1.1);
+  
+}
+
+.razmak{
+  margin: 3px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+.navigation-menu a{
+  margin-left: 10px;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .3s linear;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navigation-menu a:hover{
+  background: #953201;
+  color: #fff;
+  transform: scale(1.1);
 }
