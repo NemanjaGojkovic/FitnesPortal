@@ -15,7 +15,11 @@
 }
 
 .title{
-  color: rgb(181, 63, 30);
+  color: rgb(34, 46, 97);
+}
+
+body{
+  background-color: #cccccc;
 }
 
 .navigation-menu{
@@ -85,7 +89,7 @@ table{
 
 .centerArea {
 
-  background-image: url("oNama.jpg");
+  background-image: url("images/oNama.jpg");
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 200px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -126,7 +130,7 @@ table{
 
 .image1{
 
-  background-image: url("mainPage.jpg");
+  background-image: url("images/mainPage.jpg");
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 200px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -152,7 +156,7 @@ table{
 }
 
 .image2{
-  background-image: url("main2.jpg");
+  background-image: url("images/main2.jpg");
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 200px; /* You must set a specified height */
   background-position: center; /* Center the image */
@@ -206,8 +210,8 @@ table{
   background-color: rgb(107, 99, 99);
   margin-top: auto;
   width: 100%;
-  justify-content: space-between;
-  height: 80px;
+  justify-content: space-around;
+  height: 140px;
   align-items: center;
   }
   
@@ -221,4 +225,20 @@ table{
   padding: 10px;
   justify-content: space-around;
   width: 40%;
+  }
+
+  .logoImage{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+
+  .logoFooter{
+    width: 110px;
+    height: 110px;
+    margin: 10px;
+  }
+
+  .services-body{
+    min-height: 100vh;
   }

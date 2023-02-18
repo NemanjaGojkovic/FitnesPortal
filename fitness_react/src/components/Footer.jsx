@@ -7,7 +7,7 @@ return (
 <>
 <div className='footer'>
 <div className='logo'>
-
+<img src="https://cdn.pixabay.com/photo/2022/07/17/19/15/gym-7328168_960_720.png" alt="" className='logoFooter' />
 </div>
 <div className='social'>
 <Link className='icon' to='http://instagram.com'><BsInstagram size={25}/></Link>

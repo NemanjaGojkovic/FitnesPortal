@@ -40,7 +40,8 @@ function Navbar({token, currentUser, removeToken}){
     return (
     <div className="inner-width">  
         <nav className="navigation-menu">
-          <h1 className='title'>OutworkEm</h1>
+          <img src="https://cdn.pixabay.com/photo/2022/07/17/19/15/gym-7328168_960_720.png" alt="" className='logoImage' />
+          <h1 className='title'>PowerGym</h1>
           <Link to="/"> Početna</Link>
           <Link to="/service"> Usluge</Link>
           <Link to="/about"> O nama</Link>

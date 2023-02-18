@@ -7,6 +7,7 @@ import ContactPage from './components/ContactPage';
 import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
+import Services from './components/Services';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           }/>
           <Route path='/admin' element={
             <Admin/>
+          }/>
+          <Route path='/service' element={
+            <Services/>
           }/>
         </Routes>
       <Footer></Footer>
