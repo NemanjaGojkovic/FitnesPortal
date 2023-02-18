@@ -45,14 +45,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         if(!Auth::attempt($request->only('email', 'password'))){
-            return response()->json(['message'=>'Korisnik ne postoji']);
+            return response()->json(['success'=>false]);
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message'=>'Dobrodosao ' .$user->firstname.'. Trenirajmo zajedno!', 'access_token'=>$token, 'token_type'=>'Bearer']);
+        return response()->json(['success'=>true, 'access_token'=>$token, 'token_type'=>'Bearer']);
     }
 
     public function logout()

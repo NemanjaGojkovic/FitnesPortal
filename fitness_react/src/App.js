@@ -8,12 +8,23 @@ import AboutPage from './components/AboutPage';
 import Footer from './components/Footer';
 import Admin from './components/Admin';
 import Services from './components/Services';
+import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
+import {useState} from 'react'
 
 function App() {
+
+  const [token, setToken] = useState();
+
+  function addToken(auth_token){
+    setToken(auth_token)
+  }
+
   return (
+    
     <>
     <BrowserRouter>
-      <Navbar></Navbar>
+      <Navbar token={token}></Navbar>
         <Routes>
           <Route path='/' element={
             <MainPage/>
@@ -29,6 +40,12 @@ function App() {
           }/>
           <Route path='/service' element={
             <Services/>
+          }/>
+          <Route path='/login' element={
+            <LoginPage addToken={addToken}/>
+          }/>
+          <Route path='/register' element={
+            <RegisterPage/>
           }/>
         </Routes>
       <Footer></Footer>

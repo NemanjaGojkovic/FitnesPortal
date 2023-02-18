@@ -8,7 +8,7 @@ function Navbar({token, currentUser, removeToken}){
 
     var config = {
         method: 'post',
-        url: '.http://127.0.0.1:8000/api/logout',
+        url: 'api/logout',
         headers: { 
         
         Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
@@ -62,7 +62,7 @@ function Navbar({token, currentUser, removeToken}){
         ) : (
           <div className='nav2'>
           <Link className='profile' to="/profile">Profil</Link>
-          <Link className='logout' to="/logout">Logout</Link>
+          <Link onClick={handleLogout} className='logout' to="/">Logout</Link>
           </div>
         )
 

@@ -7,7 +7,7 @@
 
 
 .inner-width{
-
+  text-decoration: none;
   padding: 0 10px;
   display: flex; 
   background-color: rgb(107, 99, 99); 
@@ -23,6 +23,7 @@ body{
 }
 
 .navigation-menu{
+  text-decoration: none;
   float: left;
   display: flex;
   align-items: center;
@@ -242,3 +243,92 @@ table{
   .services-body{
     min-height: 100vh;
   }
+
+  .login-body{
+    background-image: url("images/pexels-leon-ardho-1552252\ \(1\).jpg");
+    min-height: 130vh;
+    background-size: cover;
+    background-color: r;
+  }
+
+  .Auth-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .Auth-form {
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: #cccccc;
+  }
+  
+  .Auth-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+    padding-bottom: 7%;
+  }
+  
+  .Auth-form-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+  }
+
+  .form-group{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  input{
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .combobox{
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .button-div{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  .btn-login{
+    width: 250px;
+    height: 30px;
+    background-color: #7e6969;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    transition: 0.3s ;
+  }
+
+  .btn-login:hover{
+    background-color: #888888;
+    transition: 0.3s ;
+    border-radius: 1px;
+    cursor: pointer;
+  }
+
+  
