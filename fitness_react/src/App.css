@@ -10,7 +10,7 @@
 
   padding: 0 10px;
   display: flex; 
-  background-color: rgb(54, 0, 0); 
+  background-color: rgb(107, 99, 99); 
   justify-content: space-around;
 }
 
@@ -45,13 +45,13 @@
 }
 
 .nav2 a:hover{
-  background: #953201;
+  background: #312f2f;
   color: #fff;
   border-width: 2px;
   border-color: black;
   transform: scale(1.1);
   
-}
+  }
 
 .razmak{
   margin: 3px;
@@ -70,10 +70,10 @@
 }
 
 .navigation-menu a:hover{
-  background: #953201;
+  background: #312f2f;
   color: #fff;
   transform: scale(1.1);
-}
+  }
 
 table{
   border: 2px solid gray;
@@ -200,3 +200,25 @@ table{
   width: 200px;
 
 }
+
+.footer{
+  display: flex;
+  background-color: rgb(107, 99, 99);
+  margin-top: auto;
+  width: 100%;
+  justify-content: space-between;
+  height: 80px;
+  align-items: center;
+  }
+  
+  .icon{
+  padding: 10xp;
+  color: black;
+  }
+  
+  .social{
+  display: flex;
+  padding: 10px;
+  justify-content: space-around;
+  width: 40%;
+  }
