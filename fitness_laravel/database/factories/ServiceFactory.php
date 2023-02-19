@@ -20,7 +20,7 @@ class ServiceFactory extends Factory
         return [
             'name'=>$this->faker->word(),
             'price'=>$this->faker->randomFloat(4, 0, 7000),
-            'duration'=>$this->faker->time(),
+            'duration'=>$this->faker->numberBetween(0, 365),
             'description'=>$this->faker->text(),
             'type_id'=>Type::factory()
         ];

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->double('price');
-            $table->time('duration');
+            $table->integer('duration');
             $table->text('description');
             $table->foreignId('type_id');
             $table->timestamps();

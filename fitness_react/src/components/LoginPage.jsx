@@ -15,18 +15,26 @@ function LoginPage({addToken, addUser}){
         newUserData[e.target.name] = e.target.value;
         setUserData(newUserData)
     }
+
+    
+
     let navigate = useNavigate()
+
     function handleLogin(e){
         e.preventDefault()
         axios.post("api/login", userData)
         .then((res)=>{
-            if(res.data.success ===true){
+            if(res.data.success === true){
+                console.log(res.data)
+                console.log(userData)
                 window.sessionStorage.setItem("auth_token", res.data.access_token)
                 addToken(res.data.access_token)
                 addUser(userData)
                 navigate("/")
             }
-        }).catch((e)=>console.log(e))
+        }).catch(function (error) {
+          console.log(error);
+      })
     }
 
     return (

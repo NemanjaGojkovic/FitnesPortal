@@ -21,7 +21,7 @@ function Navbar({token, currentUser, removeToken}){
     .then(function (response) {
         console.log(JSON.stringify(response.data));
         window.sessionStorage.setItem("auth_token",null);
-        removeToken();
+        removeToken()
     })
     .catch(function (error) {
         console.log(error);
@@ -31,7 +31,7 @@ function Navbar({token, currentUser, removeToken}){
 
   const admin = () =>{
     if(currentUser != null){
-      return currentUser.admin;
+      return currentUser.admin==1;
      }else{
        return false;
      }
@@ -46,7 +46,7 @@ function Navbar({token, currentUser, removeToken}){
           <Link to="/service"> Usluge</Link>
           <Link to="/about"> O nama</Link>
           <Link to="/contact"> Kontakt</Link>
-          {token!=null ?
+          {token!=null && !admin() ?
             <Link to="/my_services">Moje usluge</Link> : <></>
           }
           {admin() ? 
