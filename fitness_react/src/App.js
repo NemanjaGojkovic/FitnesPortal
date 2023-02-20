@@ -45,13 +45,27 @@ function App() {
         users.map((user) =>{
             if(user.email == u.email){
                 setCurrentUser(user);
-                // loadUsages();
+                loadUsages()
             };
         });
     };
 }
 
-const [usages, setUsages] = useState([]);
+
+const [usages, setUsages]=useState()
+
+let header= {
+  headers: {'Authorization': "Bearer " + token}
+};
+
+useEffect(()=>{
+  if(usages==null && token!=null){
+      axios.get("api/usages", header).then((res)=>{
+          console.log(res.data);
+          setUsages(res.data.usages);
+      });
+  }
+},[usages]);
 
 function loadUsages() {
 
@@ -70,6 +84,7 @@ function loadUsages() {
   
   axios(config)
   .then(function (response) {
+      console.log(JSON.stringify(response.data));
       setUsages(response.data.usages);
   })
   .catch(function (error) {
@@ -78,33 +93,57 @@ function loadUsages() {
 
   };
 
-  const createUsage = (id) => {
-    
-    
-    
-    var data = {
-      service_id: id,
-    }
+const [services, setServices]=useState();
+    useEffect(()=>{
+        if(services==null){
+            axios.get("api/services").then((res)=>{
+                setServices(res.data.services);
+            });
+        }
+    },[users]);
 
-    var config = {
-      method: 'post',
-      url: 'api/usages',
-      headers: { 
-      
-      Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
-      },
-      
-      data : data,
-      };
 
-  axios(config)
-  .then(function (response) {
-      console.log(JSON.stringify(response.data));
-      setUsages(usages => [...usages, response.data[1]]);
-  })
-  .catch(function (error) {
-      console.log(error);
-  });
+  const createUsage = (id, duration) => {
+
+    console.log(id)
+
+    services.map((service)=>{
+      if(service.id===id){
+        let today = new Date()
+        let endDay = new Date(today)
+        endDay.setDate(today.getDate()+duration)
+        let todaySql = today.toISOString().slice(0, 10); 
+        let endSql = endDay.toISOString().slice(0, 10);  
+    
+        var data = {
+         service_id: id,
+          date_from: todaySql,
+          date_to: endSql
+        }
+
+        var config = {
+          method: 'post',
+          url: 'api/usages',
+          headers: { 
+      
+         Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
+         },
+      
+          data : data,
+        };
+
+         axios(config)
+         .then(function (response) {
+          console.log(JSON.stringify(response.data));
+          setUsages(usages => [...usages, response.data[1]]);
+         })
+          .catch(function (error) {
+              console.log(error);
+          });
+         }
+       })
+    
+    
   
 };
 
@@ -173,7 +212,7 @@ function loadUsages() {
             <Admin/>
           }/>
           <Route path='/service' element={
-            <Services token={token}/>
+            <Services token={token} createUsage={createUsage} services={services} usages={usages}/>
           }/>
           <Route path='/login' element={
             <LoginPage addToken={addToken} addUser={addUser}/>
@@ -185,7 +224,7 @@ function loadUsages() {
             <ProfilePage currentUser={currentUser}/>
           }/>
           <Route path='/usages' element={
-            <Usages/>
+            <Usages token={token}/>
           }/>
         </Routes>
       <Footer></Footer>

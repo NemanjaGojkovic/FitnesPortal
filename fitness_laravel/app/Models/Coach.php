@@ -9,6 +9,8 @@ class Coach extends Model
 {
     use HasFactory;
 
+    protected $guarded=[];
+
     public function service()
     {
         return $this->belongsToMany(Service::class);

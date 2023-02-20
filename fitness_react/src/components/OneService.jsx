@@ -1,7 +1,16 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card'
 
-function OneService({service, token}){
+
+function OneService({service, token, createUsage, usages}){
+    let activated = false
+    if(token!=null && usages!=null){
+        usages.map((usage)=>{
+        if(usage.service.id === service.id){
+            activated=true
+        }
+        })
+    }
+
     return (
     <>
         <div className='service'>
@@ -13,7 +22,8 @@ function OneService({service, token}){
             <div className='duration'>{service.duration} dana</div>
             </div>
             <div className='type'>Tip: {service.type.name}</div>
-            {token!=null ? <div className='buttonDiv'><button className='activate'>Aktiviraj</button></div> : <></>}
+            {token!=null ? (!activated ? <div  className='buttonDiv'><button onClick={()=>{createUsage(service.id, service.duration)}} className='activate'>Aktiviraj</button></div> :
+                <div  className='acitaved-service'><p className='textAct'>Usluga je vec aktivirana</p></div> ) : <></>}
         </div>
         
     </>
