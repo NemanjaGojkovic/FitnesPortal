@@ -569,3 +569,42 @@ table{
   }
 
 
+  .searchDiv{
+    display: flex;
+    margin: 30px;
+    justify-content: space-around;
+  }
+
+  .search{
+    width: 250px;
+  }
+
+  .sortA{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 180px;
+    transition: 0.5s linear;
+  }
+
+  .sortD{
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 180px;
+    transition: 0.5s linear;
+  }
+
+  .sortA:hover{
+    border: 2px solid black;
+    background-color: #888888;
+    transition: 0.5s linear;
+  }
+
+  .sortD:hover{
+    border: 2px solid black;
+    background-color: #888888;
+    transition: 0.5s linear;
+  }
+
+  

@@ -1,6 +1,5 @@
 
-import './App.css';
-import Navbar from './components/Navbar';
+import './App.css';import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MainPage from './components/MainPage';
 import ContactPage from './components/ContactPage';
@@ -12,8 +11,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
 import {useState, useEffect} from 'react'
-import axios from 'axios';
-import Usages from './components/Usages';
+import axios from 'axios';import Usages from './components/Usages';
 
 function App() {
 
@@ -92,6 +90,15 @@ function loadUsages() {
   });
 
   };
+
+  const [types, setTypes]=useState();
+    useEffect(()=>{
+        if(types==null){
+            axios.get("api/types").then((res)=>{
+                setTypes(res.data.types);
+            });
+        }
+    },[types]);
 
 const [services, setServices]=useState();
     useEffect(()=>{
@@ -212,7 +219,7 @@ const [services, setServices]=useState();
             <Admin/>
           }/>
           <Route path='/service' element={
-            <Services token={token} createUsage={createUsage} services={services} usages={usages}/>
+            <Services token={token} createUsage={createUsage} services={services} usages={usages} types={types}/>
           }/>
           <Route path='/login' element={
             <LoginPage addToken={addToken} addUser={addUser}/>
