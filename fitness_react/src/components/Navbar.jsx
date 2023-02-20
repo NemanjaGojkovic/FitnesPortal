@@ -47,7 +47,7 @@ function Navbar({token, currentUser, removeToken}){
           <Link to="/about"> O nama</Link>
           <Link to="/contact"> Kontakt</Link>
           {token!=null && !admin() ?
-            <Link to="/my_services">Moje usluge</Link> : <></>
+            <Link to="/usages">Moje usluge</Link> : <></>
           }
           {admin() ? 
           <Link to="/admin"> Admin</Link> :<></>

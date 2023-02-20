@@ -13,6 +13,7 @@ import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
 import {useState, useEffect} from 'react'
 import axios from 'axios';
+import Usages from './components/Usages';
 
 function App() {
 
@@ -182,6 +183,9 @@ function loadUsages() {
           }/>
           <Route path='/profile' element={
             <ProfilePage currentUser={currentUser}/>
+          }/>
+          <Route path='/usages' element={
+            <Usages/>
           }/>
         </Routes>
       <Footer></Footer>

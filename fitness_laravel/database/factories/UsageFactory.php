@@ -20,7 +20,7 @@ class UsageFactory extends Factory
     {
         return [
             'date_from'=>$this->faker->date(),
-            'date_to'=>$this->faker->date(),
+            'date_to'=>$this->faker->dateTimeBetween('-1 year', 'now'),
             'user_id'=>User::factory(),
             'service_id'=>Service::factory()
         ];

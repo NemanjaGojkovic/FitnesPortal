@@ -370,6 +370,22 @@ table{
   
   }
 
+  .centerAreaUsages {
+
+    background-image: url("https://i.pinimg.com/originals/d2/95/77/d295770e25e76451f2a1d3912903708f.jpg");
+    background-color: #cccccc; /* Used if the image is unavailable */
+    height: 200px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+  
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+    padding: 200px;
+  
+  }
+
   .service{
     border: 1px solid rgb(67, 65, 65);
     border-radius: 10px;
@@ -432,6 +448,7 @@ table{
     color: #f8f7f7;
     border-radius: 40px;
     width: 180px;
+    cursor: pointer;
   }
 
   .buttonDiv{

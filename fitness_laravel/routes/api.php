@@ -45,10 +45,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     
     Route::resource('services', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('categories', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('types', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('coaches', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('usages', ServiceController::class)->only(['index','update', 'store', 'delete']);
+    Route::resource('categories', CategoryController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('types', TypeController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('coaches', CoachController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('usages', UsageController::class)->only(['index','update', 'store', 'delete']);
     Route::put('/update-user', [AuthController::class, 'update']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
