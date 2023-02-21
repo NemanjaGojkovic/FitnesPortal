@@ -91,10 +91,10 @@ table{
 .centerArea {
 
   background-image: url("images/oNama.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 200px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-color: #cccccc; 
+  height: 200px; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   background-size: cover; 
 
   color: #fff;
@@ -132,10 +132,10 @@ table{
 .image1{
 
   background-image: url("images/mainPage.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 200px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-color: #cccccc; 
+  height: 200px; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   background-size: cover; 
 
   color: #fff;
@@ -145,7 +145,7 @@ table{
 }
 
 .color{
-  background-color: #cccccc; /* Used if the image is unavailable */
+  background-color: #cccccc; 
   height: 500px; 
   text-align: center;
   padding-top: 40px;
@@ -158,10 +158,10 @@ table{
 
 .image2{
   background-image: url("images/main2.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 200px; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-color: #cccccc; 
+  height: 200px; 
+  background-position: center; 
+  background-repeat: no-repeat; 
   background-size: cover; 
 
   color: #fff;
@@ -605,6 +605,31 @@ table{
     border: 2px solid black;
     background-color: #888888;
     transition: 0.5s linear;
+  }
+
+  /*Profile Page*/
+
+  .profilePage{
+
+    
+    background-color: #fff;
+    padding: 20px;  
+    border-radius: 30px;
+    box-shadow: 5px 5px #888888;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+    
+    text-align: justify;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.8;
+    padding: 40px;
+
+  
+    
   }
 
   
