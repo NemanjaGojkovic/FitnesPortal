@@ -15,7 +15,7 @@ function InsertCoach(){
         <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={handleRegister}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Registracija</h3>
+          <h3 className="Auth-form-title">Unesi podatke o treneru</h3>
           <div className="form-group mt-3">
             <label>Ime</label>
             <input
@@ -41,41 +41,23 @@ function InsertCoach(){
             <input
               type="date"
               className="form-control mt-1"
-              placeholder="Unesi datum rodjenja"
+              placeholder="Unesi datum početka"
               onInput={handleInput}
-              name="birthday"
+              name="started"
             />
           </div>
+          
           <div className="form-group mt-3">
-            <label>Kategorija</label>
-            <select onChange={handleComboBox} className='combobox' name="" id="">
-            {categories==null ? <></> : categories.map((category)=>(
-                <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-            </select>
-          </div>
-          <div className="form-group mt-3">
-            <label>Email adresa</label>
+            <label>Iskustvo</label>
             <input
-              type="email"
+              type="text"
               className="form-control mt-1"
-              placeholder="Unesi email"
+              placeholder="Unesi iskustvo"
               onInput={handleInput}
-              name="email"
+              name="experience"
             />
           </div>
-          <div className="form-group mt-3">
-            <label>Lozinka</label>
-            <input
-              type="password"
-              className="form-control mt-1"
-              placeholder="Unesi lozinku"
-              onInput={handleInput}
-              name="password"
-            />
-          </div>
+          
           <div className="button-div">
             <button type="submit" className="btn-login">
               Potvrdi

@@ -3,13 +3,28 @@ import axios from 'axios';
 import OneService from './OneService';
 import {useState, useEffect} from 'react'
 
-function Services({token, createUsage, usages, types}){
+function Services({token, createUsage, usages}){
+
+    const [types, setTypes]=useState();
+    useEffect(()=>{
+        if(types==null){
+            axios.get("api/types").then((res)=>{
+                setTypes(res.data.types);
+            });
+        }
+    },[types]);
+
+    const[selectedType, setSelectedType]=useState()
+
      const [services, setServices]=useState();
      useEffect(()=>{
        if(services==null){
        axios.get("api/services").then((res)=>{
       setServices(res.data.services);
     });
+
+
+
           }
                 },[services]);
                  const sortPriceAsc = () => {
@@ -28,6 +43,19 @@ function Services({token, createUsage, usages, types}){
                                  const sortedServices = [...services].sort((a, b) => a.name.localeCompare(b.name));
                                   setServices(sortedServices);
                                  };
+
+
+                                function searchByType(){
+                                    const searchedServices = [...services].filter((service)=>
+                                        service.type.id===selectedType.id
+                                    )
+                                    setServices(searchedServices)
+                                }
+
+                                function setType(e){
+                                    setSelectedType(e.target.value)
+                                }
+                                 
                                  
                                  return (
                                      <>
@@ -38,7 +66,14 @@ function Services({token, createUsage, usages, types}){
                                              <div className='searchDiv'>
                                                  <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                                                      <p style={{marginRight: "10px"}}>Pretraži po tipu:</p>
-                                                      <select className='searchType' name="" id=""></select>
+                                                      <select onChange={setType} className='searchType' name="" id="">
+                                                      {types==null ? <></> : types.map((type)=>(
+                                                        <option key={type.id} value={type.id}>
+                                                            {type.name}
+                                                         </option>
+            ))}
+                                                      </select>
+                                                      <button onClick={searchByType}>Pretrazi</button>
                                                      </div>
                                                       <input className='search' type="text" 
                                                       placeholder='Unesite tekst za pretragu' />
@@ -56,4 +91,4 @@ function Services({token, createUsage, usages, types}){
                                                               </>
                                                                );
                                                                 }
-                                                        export default Services
+                                                        export default Services                                                     
