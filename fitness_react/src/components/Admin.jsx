@@ -1,13 +1,29 @@
 
-import {Link} from 'react-router-dom'
-import React from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+import { Button } from "@material-ui/core";
+import axios from 'axios';
 
 
+  function Admin({currentUser,  services, deleteCoach, coaches}){
 
-  function Admin({currentUser, coaches, services}){
+    let navigate=useNavigate()
 
-  
+    function updateCoach(id){
+
+    }
+
+    function updateService(id){
+      
+    }
+
+   function deleteOneCoach(id){
+     deleteCoach(id)
+     navigate('/admin')
+   }
+
+   
 
     const columnsCoaches = [
         { 
@@ -36,16 +52,21 @@ import { DataGrid } from '@mui/x-data-grid';
           headerName: 'Godina pocetka',
           width: 150,
        },
-    //    {
-    //     field: 'started',
-    //     headerName: 'Godina pocetka',
-    //     width: 150,
-    //  },
-    //  {
-    //     field: 'started',
-    //     headerName: 'Godina pocetka',
-    //     width: 150,
-    //   }
+       
+     {
+      field: "delete",
+      headerName: "Izbrisi",
+       width: 100,
+        renderCell: (params) => (
+        <Button
+          variant="contained"
+           color="secondary"
+          onClick={() => deleteOneCoach(params.row.id)}
+           >
+         Obrisi
+      </Button>
+),
+},
       ];
 
       const columnsServices = [
@@ -80,24 +101,15 @@ import { DataGrid } from '@mui/x-data-grid';
         valueGetter: (param)=> param.row.type.name,
         headerName: 'Tip',
         width: 150,
-       }
-    //    {
-    //     field: 'started',
-    //     headerName: 'Godina pocetka',
-    //     width: 150,
-    //  },
-    //  {
-    //     field: 'started',
-    //     headerName: 'Godina pocetka',
-    //     width: 150,
-    //   }
+       },
+       
       ];
 
 
    return (
     <>
 
-{currentUser.admin==1 ? <div className='btn-login'>
+{currentUser.admin==1 ? <div className='btn-login btn-add'>
   <Link className='adminButton' to="/admin/insertCoach">Dodaj trenera</Link></div>:<></>}
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
@@ -107,7 +119,7 @@ import { DataGrid } from '@mui/x-data-grid';
         rowsPerPageOptions={[5]}
       />
     </div>
-{currentUser.admin==1 ? <div  className='btn-login'>
+{currentUser.admin==1 ? <div  className='btn-login btn-add'>
                           <Link className='adminButton' to="/admin/insertService">Dodaj uslugu</Link> </div>: <></>
 
 }

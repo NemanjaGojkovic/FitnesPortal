@@ -1,5 +1,5 @@
 import './App.css';import Navbar from './components/Navbar';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 import MainPage from './components/MainPage';
 import ContactPage from './components/ContactPage';
 import AboutPage from './components/AboutPage';
@@ -14,7 +14,11 @@ import axios from 'axios';import Usages from './components/Usages';
 import InsertService from './components/InsertService';
 import InsertCoach from './components/InsertCoach';
 
+
+
 function App() {
+
+  
 
   const [token, setToken] = useState();
 
@@ -31,14 +35,7 @@ function App() {
         }
     },[users]);
 
-    const [coaches, setCoaches]=useState();
-    useEffect(()=>{
-        if(coaches==null){
-            axios.get("api/coaches").then((res)=>{
-                setCoaches(res.data.coaches);
-            });
-        }
-    },[coaches]);
+    
 
     const [currentUser, setCurrentUser] = useState();
     
@@ -164,52 +161,46 @@ const [services, setServices]=useState();
   
 };
 
-// const removeUsage = (id) => {
-//   let usage_id = null;
+function updateUserData(newData){
+  setCurrentUser(newData);
+  // if(currentUser != null){
+  //     let newUser = currentUser;
+  //     newUser.email = newData.email;
+  //     newUser.name = newData.name;
+  //     newUser.user_data = newData.id
+  //     setCurrentUser(newUser);
+  //   }
+  }
 
-//     if(favouriteBooks != null){
-//         favouriteBooks.map((favBook) =>{
-//           if(favBook.book.id == id){
-//               favBook_id = favBook.id;
-//           }
-//         })
-//     }
+const deleteCoach = (id) =>{
 
-//     var config = {
-//       method: 'delete',
-//       url: 'http://127.0.0.1:8000/api/favbooks/'+ favBook_id,
-//       headers: { 
-      
-//       Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
-//       },
-      
-//       };
+  var config = {
+    method: 'delete',
+    url: 'api/coaches/'+ id,
+    headers: { 
+    
+    Authorization: "Bearer "+ window.sessionStorage.getItem("auth_token"),
+    },
+    
+    };
 
-//   axios(config)
-//   .then(function (response) {
-//       console.log(JSON.stringify(response.data));
-//       loadFavourites();
-//   })
-//   .catch(function (error) {
-//       console.log(error);
-//   });
-// };
+axios(config)
+.then(function (response) {
+    console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+    console.log(error);
+});
+};
 
-// function updateUserData(newData){
-//   if(currentUser != null){
-//       let newUser = currentUser;
-//       if(currentUser.user_data == null){
-//           newUser.user_data = newData.id;
-//       }
-//       newUser.email = newData.email;
-//       newUser.name = newData.name;
-//       newUser.user_data = newData.id
-//       setCurrentUser(newUser);
-
-
-//   }
-// }
-
+const [coaches, setCoaches]=useState();
+    useEffect(()=>{
+        if(coaches==null){
+            axios.get("api/coaches").then((res)=>{
+                setCoaches(res.data.coaches);
+            });
+        }
+    },[coaches]);
 
 
 
@@ -229,10 +220,10 @@ const [services, setServices]=useState();
             <AboutPage/>
           }/>
           <Route path='/admin' element={
-            <Admin currentUser={currentUser} coaches={coaches} services={services}/>
+            <Admin coaches={coaches} currentUser={currentUser} services={services} deleteCoach={deleteCoach}/>
           }/>
           <Route path='/admin/insertCoach' element={
-            <InsertCoach/>
+            <InsertCoach />
           }/>
           <Route path='/admin/insertService' element={
             <InsertService/>

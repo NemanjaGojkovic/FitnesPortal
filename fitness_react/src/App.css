@@ -671,4 +671,17 @@ table{
   color: black;
   justify-content: center;
   display: flex;
+  align-items: center;
+}
+
+.btn-add{
+  margin: 20px;
+  padding: 5px;
+}
+
+.mapa{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  
 }
