@@ -2,9 +2,10 @@ import React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom'
 
 
-  function Admin(){
+  function Admin({currentUser}){
 
   //  const[coaches, setCoaches] = useState();
 
@@ -104,6 +105,10 @@ import { useEffect, useState } from 'react';
                     <tbody>
                        </tbody>
                         </table>
+                        {currentUser.admin==1 ? <div>
+                        <Link to="/admin/insertCoach">Dodaj trenera</Link>
+                        <Link to="/admin/insertService"> Dodaj uslugu</Link>
+                        </div>: <></>}
                          </div>
 
 

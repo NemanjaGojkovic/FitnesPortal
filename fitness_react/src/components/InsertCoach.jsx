@@ -6,14 +6,42 @@ import {useNavigate} from 'react-router-dom'
 
 function InsertCoach(){
 
-  
+  const [coachData, setCoachData]=useState({
+    firstname: "",
+    lastname: "",
+    started: "",
+    experience: "",
+})
+
+
+  function handleInput(e){
+    let newCoachData=coachData;
+    newCoachData[e.target.name] = e.target.value;
+    setCoachData(newCoachData)
+}
+
+let navigate = useNavigate()
+
+function handleInsertCoach(e){
+  e.preventDefault()
+  axios.post("api/coaches", coachData, {headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`} })
+  .then((res)=>{
+    if(res.data.success==true){
+      alert(res.data[0])
+      navigate("/admin")
+    }else{
+      alert("Nije uspesno dodavanje!")
+    }
+  }).catch((e)=>console.log(e))
+}
+
 
 
     return (
     <>
         <div className='login-body'>
         <div className="Auth-form-container">
-      <form className="Auth-form" onSubmit={handleRegister}>
+      <form className="Auth-form" onSubmit={handleInsertCoach}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Unesi podatke o treneru</h3>
           <div className="form-group mt-3">
@@ -60,7 +88,7 @@ function InsertCoach(){
           
           <div className="button-div">
             <button type="submit" className="btn-login">
-              Potvrdi
+              Dodaj
             </button>
           </div>
           

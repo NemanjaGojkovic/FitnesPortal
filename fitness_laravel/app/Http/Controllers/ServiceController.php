@@ -42,7 +42,7 @@ class ServiceController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'duration' => 'required|date_format:H:i',
+            'duration' => 'required|numeric|min:1',
             'description' => 'required|string|max:255'
         ]);
 
@@ -97,7 +97,7 @@ class ServiceController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'duration' => 'required|date_format:H:i',
+            'duration' => 'required|numeric|min:1',
             'description' => 'required|string|max:255'
         ]);
 

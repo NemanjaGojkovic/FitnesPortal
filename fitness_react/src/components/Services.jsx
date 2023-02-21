@@ -5,6 +5,8 @@ import {useState, useEffect} from 'react'
 
 function Services({token, createUsage, usages}){
 
+    
+
     const [types, setTypes]=useState();
     useEffect(()=>{
         if(types==null){
@@ -14,19 +16,23 @@ function Services({token, createUsage, usages}){
         }
     },[types]);
 
-    const[selectedType, setSelectedType]=useState()
+    
 
      const [services, setServices]=useState();
      useEffect(()=>{
        if(services==null){
        axios.get("api/services").then((res)=>{
       setServices(res.data.services);
+      
     });
+
+    
 
 
 
           }
                 },[services]);
+
                  const sortPriceAsc = () => {
                      const sortedServices = [...services].sort((a, b) => a.price - b.price);
                       setServices(sortedServices);
@@ -45,16 +51,10 @@ function Services({token, createUsage, usages}){
                                  };
 
 
-                                function searchByType(){
-                                    const searchedServices = [...services].filter((service)=>
-                                        service.type.id===selectedType.id
-                                    )
-                                    setServices(searchedServices)
-                                }
-
-                                function setType(e){
-                                    setSelectedType(e.target.value)
-                                }
+                                 const[searhText, setSearchText]=useState('')
+                                 function handleSearch(e){
+                                    setSearchText(e.target.value.toLowerCase())
+                                 }
                                  
                                  
                                  return (
@@ -65,18 +65,10 @@ function Services({token, createUsage, usages}){
                                           <div className='functionalities'>
                                              <div className='searchDiv'>
                                                  <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                                     <p style={{marginRight: "10px"}}>Pretraži po tipu:</p>
-                                                      <select onChange={setType} className='searchType' name="" id="">
-                                                      {types==null ? <></> : types.map((type)=>(
-                                                        <option key={type.id} value={type.id}>
-                                                            {type.name}
-                                                         </option>
-            ))}
-                                                      </select>
-                                                      <button onClick={searchByType}>Pretrazi</button>
+                                                     <p style={{marginRight: "10px"}}>Pretraži uslugu:</p>
                                                      </div>
                                                       <input className='search' type="text" 
-                                                      placeholder='Unesite tekst za pretragu' />
+                                                      placeholder='Unesite tekst za pretragu' onInput={handleSearch} />
                                                       <button className='sortD' onClick={sortPriceDsc}>Sortiraj opadajuće po ceni</button>
                                                       <button className='sortA' onClick={sortPriceAsc}>Sortiraj rastuće po ceni</button>
                                                        <button className='sortD' onClick={sortNameDsc}>Sortiraj opadajuće po imenu</button>
@@ -84,9 +76,15 @@ function Services({token, createUsage, usages}){
                                                      </div>
                                                      </div>
                                                       <div className='services-body'>
-                                                         {services==null ? <></> : services.map((service)=>(
-                                                             <OneService token={token} service={service} key={service.id} createUsage={createUsage} usages={usages}/>
-                                                              ))}
+                                                         {services==null ? <></> : 
+                                                            (searhText=='' ? (services.map((service)=>(
+                                                                <OneService token={token} service={service} key={service.id} createUsage={createUsage} usages={usages}/>
+                                                                 ))) : (services.
+                                                                    filter((s)=>s.name.toLowerCase().includes(searhText))
+                                                                    .map((service)=>(
+                                                                    <OneService token={token} service={service} key={service.id} createUsage={createUsage} usages={usages}/>
+                                                                     ))))
+                                                         }
                                                              </div>
                                                               </>
                                                                );

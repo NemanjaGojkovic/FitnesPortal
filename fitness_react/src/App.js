@@ -12,6 +12,8 @@ import RegisterPage from './components/RegisterPage';
 import ProfilePage from './components/ProfilePage';
 import {useState, useEffect} from 'react'
 import axios from 'axios';import Usages from './components/Usages';
+import InsertService from './components/InsertService';
+import InsertCoach from './components/InsertCoach';
 
 function App() {
 
@@ -216,7 +218,13 @@ const [services, setServices]=useState();
             <AboutPage/>
           }/>
           <Route path='/admin' element={
-            <Admin/>
+            <Admin currentUser={currentUser}/>
+          }/>
+          <Route path='/admin/insertCoach' element={
+            <InsertCoach/>
+          }/>
+          <Route path='/admin/insertService' element={
+            <InsertService/>
           }/>
           <Route path='/service' element={
             <Services token={token} createUsage={createUsage} services={services} usages={usages} types={types}/>

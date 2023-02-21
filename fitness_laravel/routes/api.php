@@ -41,13 +41,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return auth()->user();
     });
 
-    Route::group(['middleware' => ['admin']], function () {
-    });
+    // Route::group(['middleware' => ['admin']], function () {
+    // });
     
-    Route::resource('services', ServiceController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('categories', CategoryController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('types', TypeController::class)->only(['update', 'store', 'delete'])->middleware('admin');
-    Route::resource('coaches', CoachController::class)->only(['update', 'store', 'delete'])->middleware('admin');
+    Route::resource('services', ServiceController::class)->only(['update', 'store', 'delete']);//->middleware('admin');
+    Route::resource('categories', CategoryController::class)->only(['update', 'store', 'delete']);//->middleware('admin');
+    Route::resource('types', TypeController::class)->only(['update', 'store', 'delete']);//->middleware('admin');
+    Route::resource('coaches', CoachController::class)->only(['update', 'store', 'delete']);//->middleware('admin');
     Route::resource('usages', UsageController::class)->only(['index','update', 'store', 'delete']);
     Route::put('/update-user', [AuthController::class, 'update']);
 
