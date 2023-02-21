@@ -1,4 +1,3 @@
-
 import './App.css';import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import MainPage from './components/MainPage';
@@ -31,6 +30,15 @@ function App() {
             });
         }
     },[users]);
+
+    const [coaches, setCoaches]=useState();
+    useEffect(()=>{
+        if(coaches==null){
+            axios.get("api/coaches").then((res)=>{
+                setCoaches(res.data.coaches);
+            });
+        }
+    },[coaches]);
 
     const [currentUser, setCurrentUser] = useState();
     
@@ -157,7 +165,7 @@ const [services, setServices]=useState();
 };
 
 // const removeUsage = (id) => {
-//   let favBook_id = null;
+//   let usage_id = null;
 
 //     if(favouriteBooks != null){
 //         favouriteBooks.map((favBook) =>{
@@ -202,6 +210,9 @@ const [services, setServices]=useState();
 //   }
 // }
 
+
+
+
   return (
     
     <>
@@ -218,7 +229,7 @@ const [services, setServices]=useState();
             <AboutPage/>
           }/>
           <Route path='/admin' element={
-            <Admin currentUser={currentUser}/>
+            <Admin currentUser={currentUser} coaches={coaches} services={services}/>
           }/>
           <Route path='/admin/insertCoach' element={
             <InsertCoach/>

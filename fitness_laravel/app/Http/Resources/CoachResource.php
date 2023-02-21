@@ -19,6 +19,7 @@ class CoachResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->resource->id,
             'firstname'=>$this->resource->firstname,
             'lastname'=>$this->resource->lastname,
             'experience'=>$this->resource->experience,
