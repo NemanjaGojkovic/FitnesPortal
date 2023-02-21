@@ -53,7 +53,7 @@ CREATE TABLE `coaches` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `coaches` */
 
@@ -61,8 +61,7 @@ insert  into `coaches`(`id`,`firstname`,`lastname`,`experience`,`started`,`creat
 (1,'Ebony','Lehner','Et nihil ab voluptas impedit corporis. Mollitia eos consequatur provident velit deleniti quibusdam iure.','1999-12-22','2023-02-20 12:45:17','2023-02-20 12:45:17'),
 (2,'Derick','Boyer','Ea aliquam voluptatem nihil pariatur distinctio doloremque. Quam adipisci sed maxime totam. Repellendus fugiat et id.','1987-07-07','2023-02-20 12:45:17','2023-02-20 12:45:17'),
 (3,'Maeve','Wisoky','Maxime sint eveniet consequatur ullam magnam maxime ullam. Fugiat nemo fugiat et repudiandae omnis ea qui. Consectetur excepturi et maiores sit.','1978-03-09','2023-02-20 12:45:17','2023-02-20 12:45:17'),
-(4,'Ruby','Shanahan','Necessitatibus culpa nostrum et et nemo consequatur. Sed omnis esse ut aliquam. Eligendi ducimus quod in reiciendis.','1987-05-17','2023-02-20 12:45:17','2023-02-20 12:45:17'),
-(5,'Landen','Wolff','Ipsam non est qui magni et. Et est voluptatem distinctio et ex. At accusamus et non accusamus beatae non aliquid.','1971-09-12','2023-02-20 12:45:17','2023-02-20 12:45:17');
+(7,'adasf','afafas','asfasfassf','2023-02-01','2023-02-21 20:15:42','2023-02-21 20:15:42');
 
 /*Table structure for table `failed_jobs` */
 
@@ -137,20 +136,12 @@ CREATE TABLE `personal_access_tokens` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `personal_access_tokens` */
 
 insert  into `personal_access_tokens`(`id`,`tokenable_type`,`tokenable_id`,`name`,`token`,`abilities`,`last_used_at`,`expires_at`,`created_at`,`updated_at`) values 
-(41,'App\\Models\\User',7,'auth_token','fffd833422af63d9c5be8bfa409952051604c270f2a7cb06b0bbaefc80f1dab3','[\"*\"]','2023-02-20 17:45:33',NULL,'2023-02-20 17:45:28','2023-02-20 17:45:33'),
-(42,'App\\Models\\User',7,'auth_token','7a6fd21efb74ca733b872611a8397176ceba822ce42707165d574da0a3f715f9','[\"*\"]','2023-02-20 17:48:37',NULL,'2023-02-20 17:48:37','2023-02-20 17:48:37'),
-(43,'App\\Models\\User',7,'auth_token','3cdf6476c409b4d010f534351dc4f6adedd0bbd1b3c817f4f3ca1bc6b7a228b7','[\"*\"]','2023-02-20 17:51:40',NULL,'2023-02-20 17:51:39','2023-02-20 17:51:40'),
-(44,'App\\Models\\User',7,'auth_token','78387cc88943651d0b54a9702af77c523c7965d2a0eaf8ba1278350f16b608b4','[\"*\"]','2023-02-20 17:58:13',NULL,'2023-02-20 17:58:08','2023-02-20 17:58:13'),
-(45,'App\\Models\\User',7,'auth_token','6be16b77b6157455a02cdc7adf884f23383a8de412b19b86a8d0a6e0dac538d2','[\"*\"]','2023-02-20 18:05:04',NULL,'2023-02-20 17:58:47','2023-02-20 18:05:04'),
-(46,'App\\Models\\User',7,'auth_token','0d2e958cb424d0a94b78d75ff53a263367fc1973980363c0d754d7cb3ca4f6bc','[\"*\"]','2023-02-20 18:06:47',NULL,'2023-02-20 18:05:55','2023-02-20 18:06:47'),
-(47,'App\\Models\\User',7,'auth_token','2b43d6d36242e178616d0c6a90551da68911814b109ca81dfacbc1f10b349d9e','[\"*\"]','2023-02-20 18:07:51',NULL,'2023-02-20 18:07:20','2023-02-20 18:07:51'),
-(48,'App\\Models\\User',7,'auth_token','9c82990c6e1044bd5e988bec68b2277dbe27dd1af1e2b6e92ff2a7609f75ef46','[\"*\"]','2023-02-20 18:13:31',NULL,'2023-02-20 18:13:07','2023-02-20 18:13:31'),
-(49,'App\\Models\\User',7,'auth_token','a5a3bd56c53540b11e114a92485f822c78bb78afaa8103d9e44df90964d07e49','[\"*\"]','2023-02-20 18:16:34',NULL,'2023-02-20 18:16:01','2023-02-20 18:16:34');
+(77,'App\\Models\\User',6,'auth_token','5ca1430473b1210c4c485f5473cccac8eccf78cafd4f428d095f9fdd543e7871','[\"*\"]','2023-02-21 21:28:24',NULL,'2023-02-21 21:28:24','2023-02-21 21:28:24');
 
 /*Table structure for table `services` */
 
@@ -166,7 +157,7 @@ CREATE TABLE `services` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `services` */
 
@@ -177,7 +168,10 @@ insert  into `services`(`id`,`name`,`price`,`duration`,`description`,`type_id`,`
 (4,'hic',6467.3259,152,'Error velit rerum esse quia tempore. Ut aperiam enim sint sit est. Sed voluptatibus est sunt nostrum deleniti consequatur labore. Ut blanditiis voluptas aut animi vel id reprehenderit.',4,'2023-02-20 12:45:17','2023-02-20 12:45:17'),
 (5,'ipsa',6989.3499,42,'Et hic architecto commodi vel nesciunt. Eum ut voluptatibus laborum omnis eum. Tenetur magni sint magni iure.',5,'2023-02-20 12:45:17','2023-02-20 12:45:17'),
 (6,'quis',2471.6595,343,'Ipsam sapiente ex ducimus aut voluptas. Temporibus commodi iste sed velit dolorem ut reiciendis. Molestias voluptatum incidunt voluptatum ea. Repellendus explicabo quo nobis atque assumenda.',6,'2023-02-20 12:45:17','2023-02-20 12:45:17'),
-(7,'ad',2363.2125,323,'Harum ad dolores itaque vel voluptas neque ut. Sapiente corporis et et corporis harum aliquam debitis. Animi mollitia enim deleniti rerum nisi.',7,'2023-02-20 12:45:17','2023-02-20 12:45:17');
+(7,'ad',2363.2125,323,'Harum ad dolores itaque vel voluptas neque ut. Sapiente corporis et et corporis harum aliquam debitis. Animi mollitia enim deleniti rerum nisi.',7,'2023-02-20 12:45:17','2023-02-20 12:45:17'),
+(8,'asfafs',2333,23,'asfasfsfa',5,'2023-02-21 11:40:22','2023-02-21 11:40:22'),
+(9,'asfasf',2222,32,'asfafsasf',4,'2023-02-21 11:47:11','2023-02-21 11:47:11'),
+(10,'safasfafs',2333,33,'asfafsafasfa',5,'2023-02-21 11:48:43','2023-02-21 11:48:43');
 
 /*Table structure for table `types` */
 
@@ -217,7 +211,7 @@ CREATE TABLE `usages` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usages_user_id_service_id_unique` (`user_id`,`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=482 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=483 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `usages` */
 
@@ -229,7 +223,8 @@ insert  into `usages`(`id`,`user_id`,`service_id`,`date_from`,`date_to`,`created
 (6,5,2,'2023-02-20','2023-11-24','2023-02-20 16:06:01','2023-02-20 16:06:01'),
 (10,7,4,'2023-02-20','2023-07-22','2023-02-20 16:06:01','2023-02-20 16:06:01'),
 (12,7,5,'2023-02-20','2023-04-03','2023-02-20 16:06:02','2023-02-20 16:06:02'),
-(481,7,6,'2023-02-20','2024-01-29','2023-02-20 18:16:11','2023-02-20 18:16:11');
+(481,7,6,'2023-02-20','2024-01-29','2023-02-20 18:16:11','2023-02-20 18:16:11'),
+(482,7,2,'2023-02-21','2023-11-25','2023-02-21 21:25:33','2023-02-21 21:25:33');
 
 /*Table structure for table `users` */
 
